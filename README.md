@@ -1,5 +1,9 @@
 # The files you need in your app configuration to deploy it to Railway
 
+
+Watch the full video tutorial: [How to Deploy a Flask App to Railway](https://youtu.be/QM4dhbCqres)
+
+
 ### .gitignore
 
 ### Procfile
@@ -7,9 +11,13 @@
 ### requirements.txt
 
 
+
 **.gitignore**
 
-This is where you’ll declare the files you don’t want to commit to your GitHub repo.
+This is where you’ll declare the files you don’t want to commit to your GitHub repo (e.g. .env file).
+Remember that you'll need a .env local file to store your environment variables for local testing.
+
+
 
 **Procfile** (to start the deployment)
 
