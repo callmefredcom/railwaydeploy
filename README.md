@@ -61,13 +61,13 @@ load_dotenv()
 db_password = os.environ.get('MYSQLPASSWORD')
 
 # MySQL configuration
-DATABASE_URL = f"mysql -hmonorail.proxy.rlwy.net -uroot -p{db_password} --port 11855 --protocol=TCP railway"
+DATABASE_URL = f"mysql -hroundhouse.proxy.rlwy.net -uroot -p{db_password} --port 50259 --protocol=TCP railway"
 
 DATABASE_CONFIG = {
             'user': 'root',
             'password': os.environ.get('MYSQLPASSWORD'),
-            'host': 'monorail.proxy.rlwy.net',
-            'port': '11855',
+            'host': 'roundhouse.proxy.rlwy.net',
+            'port': '50259',
             'database': 'railway'
         }
 
