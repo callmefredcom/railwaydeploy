@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="bg-gray-200">
+
+ <a href="/" class="absolute top-4 right-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        APP
+    </a>
+
+    <div class="container mx-auto py-10">
+        <h2 class="text-2xl font-bold mb-4 text-gray-700">User List</h2>
+        <table id="user-table" class="table-auto w-full">
+            <thead>
+                <tr>
+                    <th class="text-left">Email</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+            </thead>
+           <tbody id="user-table-body" class="text-left border-b border-gray-400"> <!-- Change this line -->
+    <!-- Rows will be added here by JavaScript -->
+</tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+
+</body>
+</html>

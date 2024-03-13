@@ -39,6 +39,10 @@ def close_db_connection(exception):
 def home():
     return render_template('index.html')
 
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
 @app.route('/submit-email', methods=['POST'])
 def submit_email():
     email = request.form['email']
@@ -67,6 +71,49 @@ def submit_email():
         cursor.close()
 
     return jsonify({'status': 'success', 'message': 'Email submitted successfully'})
+
+@app.route('/get-users', methods=['GET'])
+def get_users():
+    # Get the database connection
+    db = get_db()
+
+    try:
+        # Create a cursor
+        cursor = db.cursor()
+
+        # Execute the SELECT statement
+        cursor.execute("SELECT * FROM users")
+
+        # Fetch all rows
+        rows = cursor.fetchall()
+
+        # Convert rows into a list of dictionaries
+        users = [dict(zip(cursor.column_names, row)) for row in rows]
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        return jsonify({'status': 'failure', 'message': 'Could not retrieve users'})
+
+    finally:
+        # Close the cursor
+        cursor.close()
+
+    return jsonify({'status': 'success', 'users': users})
+
+
+@app.route('/check-password', methods=['POST'])
+def check_password():
+    # Get the password from the request data
+    client_password = request.json.get('password')
+
+    # Get the password from the environment variables
+    server_password = os.environ.get('PASSWORD')
+
+    # Check if the passwords match
+    if client_password == server_password:
+        return jsonify({'status': 'success'})
+    else:
+        return jsonify({'status': 'failure'})
 
 if __name__ == '__main__':
     app.run(debug=True)
