@@ -53,6 +53,8 @@ def submit_email():
         # Execute the INSERT statement
         cursor.execute("INSERT INTO users (email) VALUES (%s)", (email,))
 
+        print("Email submitted successfully")
+
         # Commit the changes
         db.commit()
 
