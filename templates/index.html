@@ -5,16 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Waiting List</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-<style>
-.form-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-</style>
-
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 
 </head>
 <body class="flex items-center justify-center h-screen bg-gray-200">
@@ -31,49 +22,8 @@
     </form>
 </div>
 
-<script>
-
-   document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    let email = document.querySelector('#email').value;
-
-    fetch('/submit-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'email=' + encodeURIComponent(email),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            Swal.fire(
-                'Success!',
-                data.message,
-                'success'
-            );
-        } else {
-            Swal.fire(
-                'Error!',
-                'There was an error submitting your email.',
-                'error'
-            );
-        }
-    })
-    .catch((error) => {
-        Swal.fire(
-            'Error!',
-            'There was an error submitting your email.',
-            'error'
-        );
-    });
-});
-
-
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 </html>
